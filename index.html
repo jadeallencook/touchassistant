@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Touch Assistant | No Touch Door Opener & Stylus Tool</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+      <section class="banner">
+          Free Shipping on All Orders | Order Now Before Deal Ends
+      </section>
+    <header>
+      <h1>TOUCH ASSISTANT</h1>
+      <p>No Touch Door Opener & Stylus Tool</p>
+    </header>
+    <img src="touch-assistant.png" alt="touch assistant" />
+    <section class="description">
+        <h3>Touch Assistant (Black)</h3>
+        <p class="price">$10.00</p>
+        <p>Touch Assistant will help you open doors, hold shopping bags, sign touch pads, press buttons, and more! Our economic design fits easily into your hand and attaches to your keychain. The no-touch rubber stylus glides effortlessly over any touchscreen and presses buttons with ease.</p>
+    </section>
+    <div id="paypal-button-container"></div>
+    <footer>
+      <h2>TOUCH ASSISTANT</h2>
+      <p>No Touch Door Opener & Stylus Tool</p>
+    </footer>
+    <script
+      src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"
+      data-sdk-integration-source="button-factory"
+    ></script>
+    <script>
+      paypal
+        .Buttons({
+          style: {
+            shape: 'rect',
+            color: 'silver',
+            layout: 'vertical',
+          },
+          createOrder: function (data, actions) {
+            return actions.order.create({
+              purchase_units: [
+                {
+                  amount: {
+                    value: '10',
+                  },
+                },
+              ],
+            });
+          },
+          onApprove: function (data, actions) {
+            return actions.order.capture().then(function (details) {
+              alert(
+                'Transaction completed by ' +
+                  details.payer.name.given_name +
+                  '!'
+              );
+            });
+          },
+        })
+        .render('#paypal-button-container');
+    </script>
+  </body>
+</html>
